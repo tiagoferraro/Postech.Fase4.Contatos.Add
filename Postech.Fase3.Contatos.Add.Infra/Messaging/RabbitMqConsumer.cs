@@ -35,7 +35,9 @@ public class RabbitMqConsumer
             HostName = rabbitMqConfig["HostName"] ?? throw new ArgumentNullException(nameof(configuration)),
             UserName = rabbitMqConfig["UserName"] ?? throw new ArgumentNullException(nameof(configuration)),
             Password = rabbitMqConfig["Password"] ?? throw new ArgumentNullException(nameof(configuration)),
-            Port = Convert.ToInt32(rabbitMqConfig["Port"])
+            Port = Convert.ToInt32(rabbitMqConfig["Port"]),
+            NetworkRecoveryInterval = TimeSpan.FromSeconds(10),
+            RequestedHeartbeat = TimeSpan.FromSeconds(30)
         };
         _serviceProvider = serviceProvider;
         _filaConsummer = rabbitMqConfig["QueueName"] ?? throw new ArgumentNullException(nameof(configuration));

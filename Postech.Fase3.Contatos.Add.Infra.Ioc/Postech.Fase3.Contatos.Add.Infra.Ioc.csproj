@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Postech.Fase3.Contatos.Add.Application\Postech.Fase3.Contatos.Add.Application.csproj" />
+      <ProjectReference Include="..\Postech.Fase3.Contatos.Add.Domain\Postech.Fase3.Contatos.Add.Domain.csproj" />
+      <ProjectReference Include="..\Postech.Fase3.Contatos.Add.Infra.CrossCuting\Postech.Fase3.Contatos.Add.Infra.CrossCuting.csproj" />
+      <ProjectReference Include="..\Postech.Fase3.Contatos.Add.Infra\Postech.Fase3.Contatos.Add.Infra.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+      <PackageReference Include="RabbitMQ.Client" Version="7.0.0" />
+    </ItemGroup>
+
+</Project>

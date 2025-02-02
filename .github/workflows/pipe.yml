@@ -1,18 +1,38 @@
-name: Docker Image CI
+name: .NET Build and Docker
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Motivo da execução'
+        required: false
+        default: 'Rodar Pipeline'
+        type: string
+
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore      
+      
+    - name: Test
+      run: dotnet test --verbosity normal
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: Postech.Fase3.Contatos.Add.Service/Dockerfile
+        push: false
+        tags: postech-contatos-Add:latest
+        load: true
